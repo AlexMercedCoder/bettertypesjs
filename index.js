@@ -20,10 +20,19 @@ const randomRange = (low, high) => {
     return num;
 };
 
+const randomFloatRange = (low, high) => {
+    let num = low - 1;
+    while (num < low || num > high) {
+        num = Math.random() * high;
+    }
+    return num;
+};
+
 const Random = {
     number: randomNumber,
     index: randomIndex,
-    range: randomRange
+    range: randomRange,
+    rangefl: randomFloatRange
 };
 
 /////////////////
@@ -114,25 +123,36 @@ class BetterSet {
 //BetterString
 //////////////////
 
-const BetterString = () => {
-    String.prototype.words = function() {
-        return this.split(' ');
-    };
+class BetterString {
+    constructor(string) {
+        this.str = string;
+    }
 
-    String.prototype.reverseWords = function() {
-        return this.split(' ')
-            .reverse()
-            .join(' ');
-    };
+    strMeth(method, argument) {
+        const result = eval(`this.str.${method}(${argument})`);
+        return [this, result];
+    }
 
-    String.prototype.swapWord = function(target, replace) {
-        const theString = this.split(' ');
+    words() {
+        return this.str.split(' ');
+    }
+
+    reverseWords() {
+        return new BetterString(
+            this.str
+                .split(' ')
+                .reverse()
+                .join(' ')
+        );
+    }
+
+    swapWord(target, replace) {
+        const theString = this.str.split(' ');
         const theIndex = theString.findIndex((value) => value === target);
         theString[theIndex] = replace;
-        return theString.join(' ');
-    };
-};
-
+        return new BetterString(theString.join(' '));
+    }
+}
 ///////////////////
 //BetterArray
 ///////////////////
@@ -165,7 +185,7 @@ class BetterArray {
     }
 
     undupe() {
-        return [...new Set(this.arr)];
+        return new BetterArray([...new Set(this.arr)]);
     }
 
     randElim() {
@@ -204,7 +224,7 @@ class BetterArray {
         while (this.arr.length > length) {
             removed.push(this.arr.pop());
         }
-        return removed;
+        return new BetterArray(removed);
     }
 
     lessLengthLeft(length) {
@@ -212,7 +232,7 @@ class BetterArray {
         while (this.arr.length > length) {
             removed.push(this.arr.shift());
         }
-        return removed;
+        return new BetterArray(removed);
     }
 
     someMore(callback, number) {
@@ -260,7 +280,7 @@ class BetterArray {
         for (i = 0; i < this.arr.length; i++) {
             newSet.push(callback(this.arr[i], i));
         }
-        return [...new Set(newSet)];
+        return new BetterArray([...new Set(newSet)]);
     }
 
     squish() {

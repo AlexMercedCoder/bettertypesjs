@@ -1,117 +1,89 @@
-# Alex Merced's Utilities
+# Alex Merced's BetterTypes
 
 ---
 
 ## AlexMercedCoder.com
 
-This library contain some utility functions.
+This library contains useful classes, methods and functions.
 
 ### installation
 
 #### NPM
 
-npm i mercedutils
+npm i @alexmerced/bettertypes
 
 ```
-const {superArray, utils, superString} = require("mercedutils")
-
-superArray(); //add methods to array prototype
-superString(); //add methods to string prototype
-
 const {
-    randomIndex,
-    randomRange,
-    randomNumber,
-    eliminateDupes,
-    Fetcher,
-    SuperSet
-} = utils() // makes these utility functions available
-```
-
-#### Github
-
-git clone https://github.com/AlexMercedCoder/JS_Utilities.git
-
-```
-const {superArray, utils, superString} = require("superArray.js")
-
-superArray(); //add methods to array prototype
-superString(); //add methods to string prototype
-
-const {
-    randomIndex,
-    randomRange,
-    randomNumber,
-    eliminateDupes,
-    Fetcher,
-    SuperSet,
-    countWords,
-    highWordCount
-} = utils() // makes these utility functions available
-
+    Random,
+    BetterSet,
+    BetterString,
+    BetterArray
+} = require('@alexmerced/bettertypes');
 ```
 
 ---
 
-### superArray
+### BetterArray
 
 ---
 
-**superArray() =>** run this function and going forward all the below methods will be available to all your arrays
+**new BetterArray(array) =>** creates an instance of better array which gives you access to all array methods via the arrMeth method plus several new methods
 
 ---
 
-**Array.random() =>** return random element from array
+**BetterArray.arrMeth(method, argument) =>** pass an array method as a string a second string to pass as an argument, it return an array with the current BetterArray at index 0 and the result of the method in index 1.
 
-**Array.remove((value, index) => return boolean)** => the opposite of filter, remove elements where the callback function returns true, returns a superArray
+**BetterArray.random() =>** return random element from array
 
-**Array.undupe() =>** returns a superArray of the array with duplicates removed
+**BetterArray.remove((value, index) => return boolean)** => the opposite of filter, remove elements where the callback function returns true, returns a BetterArray
 
-**Array.randElim() =>** eliminates a random element and returns it
+**BetterArray.undupe() =>** returns a BetterArray of the array with duplicates removed
 
-**Array.leaveOne()** => Randomly eliminates all but one element from array and returns a superArray of removed elements
+**BetterArray.randElim() =>** eliminates a random element and returns it
 
-**Array.leaveSome(number)** => Randomly eliminates all but a defined number of elements from array and returns a superArray of removed elements
+**BetterArray.leaveOne()** => Randomly eliminates all but one element from array and returns a BetterArray of removed elements
 
-**Array.findRemove(value)** => finds and removes value from array returning the removed value
+**BetterArray.leaveSome(number)** => Randomly eliminates all but a defined number of elements from array and returns a BetterArray of removed elements
 
-**Array.addLength(length, value)** => increases array to desired length and fills in additional spots with the value passed.
+**BetterArray.findRemove(value)** => finds and removes value from array returning the removed value
 
-**Array.lessLengthRight(length)** => removes elements from back of the array till is desired length, returns array of removed values
+**BetterArray.addLength(length, value)** => increases BetterArray to desired length and fills in additional spots with the value passed.
 
-**Array.lessLengthRight(length)** => removes elements from front of the array till is desired length, returns array of removed values
+**BetterArray.lessLengthRight(length)** => removes elements from back of the array till is desired length, returns BetterArray of removed values
 
-**Array.someMore((value, index) => return boolean, number)** => returns true if the number of iterations that return true are equal or greater to the number argument
+**BetterArray.lessLengthRight(length)** => removes elements from front of the array till is desired length, returns BetterArray of removed values
 
-**Array.everyLess((value, index) => return boolean, number)** => returns true if the number of iterations that return false are equal or less to the number argument
+**BetterArray.someMore((value, index) => return boolean, number)** => returns true if the number of iterations that return true are equal or greater to the number argument
 
-**Array.MapToObject((value, index) => return [key, value])** => like map but returns an object, the callback function must return a two element array [key, value]
+**BetterArray.everyLess((value, index) => return boolean, number)** => returns true if the number of iterations that return false are equal or less to the number argument
 
-**Array.MapToMap((value, index) => return [key, value])** => like map but returns an Map, the callback function must return a two element array [key, value]
+**BetterArray.MapToObject((value, index) => return [key, value])** => like map but returns an object, the callback function must return a two element array [key, value]
 
-**Array.MapToMap((value, index) => return [key, value])** => like map but returns a Set
+**BetterArray.MapToMap((value, index) => return [key, value])** => like map but returns an Map, the callback function must return a two element array [key, value]
 
-**Array.MapToUnique((value, index) => return [key, value])** => like map but returns an Array of only unique elements
+**BetterArray.MapToMap((value, index) => return [key, value])** => like map but returns a Set
 
-**Array.squish()** => removes the first and last elements of the array and return them in an array
+**BetterArray.MapToUnique((value, index) => return [key, value])** => like map but returns an BetterArray of only unique elements
 
-**Array.shuff()** => return shuffled version of array
+**BetterArray.squish()** => removes the first and last elements of the array and return an array with the current BetterArray in index 0, and the array of removed element in index 1
 
-**Array.toStrings()** => return array with all elements casted as strings
+**BetterArray.shuff()** => return shuffled version of BetterArray
 
-**Array.toNums()** => return array with all elements casted as Numbers
+**BetterArray.toStrings()** => return BetterArray with all elements casted as strings
 
-**Array.toBools()** => return array with all elements casted as Booleans
+**BetterArray.toNums()** => return BetterArray with all elements casted as Numbers
 
-**Array.iPop()** => immutable pop, return new version of array with last value popped
+**BetterArray.toBools()** => return BetterArray with all elements casted as Booleans
 
-**Array.iPush(value)** => immutable push, return new version of array with value pushed into end of array
+**BetterArray.iPop()** => immutable pop, return array with new version of BetterArray with last value popped and the value popped
 
-**Array.iShift()** => immutable shift, return new version of array with first value removed
+**BetterArray.iPush(value)** => immutable push, return an array with new version of BetterArray along with value pushed in.
 
-**Array.iUnshift(value)** => immutable unshift, return new version of array with value added at beginning of array
+**BetterArray.iShift()** => immutable shift, return array with new version of BetterArray and the value shifted
 
-**Array.iSplice(index, amount)** => immutable splice, return new version of array with the specified number of elements removed starting with the specified index.
+**BetterArray.iUnshift(value)** => immutable unshift, return an array with new version of BetterArray along with value unshifted in.
+
+**BetterArray.iSplice(index, amount)** => immutable splice, return new version of array with the specified number of elements removed starting with the specified index.
 
 ---
 
@@ -119,15 +91,17 @@ const {
 
 ---
 
-**superString() =>** run this function and going forward all the below methods will be available to all your strings
+**new BetterString('string') =>** creates a better a string which gives you access to the methods below
 
 ---
 
+**BetterString.strMeth('method','argument') =>** use string methods by passing in a string of the method name and string with the argument to pass, returns an array with the BetterString in index 0 and the result of the function in index 1
+
 **String.words() =>** returns array of words in the string
 
-**String.reverseWords() =>** returns string with the words reversed
+**String.reverseWords() =>** returns BetterString with the words reversed
 
-**String.swapWord(target, replacement) =>** returns string where the first instance of the target word is replaced by the replacement.
+**String.swapWord(target, replacement) =>** returns BetterString where the first instance of the target word is replaced by the replacement.
 
 ---
 
@@ -135,17 +109,13 @@ const {
 
 ---
 
-**randomIndex(Array) =>** Return random number 0 - Array.length
+**Random.index(Array) =>** Return random number 0 - Array.length
 
-**randomRange (Low, High) =>** Return number between low and high
+**Random.range(Low, High) =>** Return integer between low and high
 
-**randomNumber(Number) =>** Return random number 0 - Number
+**Random.number(Number) =>** Return random number 0 - Number
 
-**eliminateDupes(Array) =>** Return Array with duplicates removed
-
-**countWords(String) =>** returns object of words in string and their word count
-
-**highWordCount(string) =>** returns array with most used word and count in a string
+**Random.rangefl(Low, High) =>** Return float between low and high
 
 ### Fetcher
 
@@ -180,37 +150,37 @@ returns the data from the most recent call
 
 ---
 
-### PowerSet
+### BetterSet
 
 ---
 
-combines the benefits of arrays and sets but giving you access to a dataset in both forms. The constructor takes an array to generate the PowerSet from. I implemented the methods from the MDN examples for sets, cause well... they are useful.
+combines the benefits of arrays and sets but giving you access to a dataset in both forms. The constructor takes an array to generate the BetterSet from. I implemented the methods from the MDN examples for sets, cause well... they are useful.
 
 ```
-const { PowerSet } = utils();
+const { BetterSet } = utils();
 
-const pset1 = new PowerSet([1, 2, 3, 4]);
-const pset2 = new PowerSet([3, 4, 5, 6]);
+const pset1 = new BetterSet([1, 2, 3, 4]);
+const pset2 = new BetterSet([3, 4, 5, 6]);
 
 console.log(pset1.difference(pset2));
 ```
 
-#### PowerSet Properties
+#### BetterSet Properties
 
 **this.set =>** the set of the array passed in
 
 **this.arr =>** this is the array of the array passed in without duplicates
 
-#### PowerSet methods
+#### BetterSet methods
 
 **this.arrMethod("Method", "Argument") =>** use any array method by passing in a string for the method you desire to use and another string with the argument you want to pass.
 
-**this.isSuperset(PowerSet) =>** Returns true if the PowerSet is a superset of the PowerSet passed as an argument
+**this.isSuperset(BetterSet) =>** Returns true if the BetterSet is a superset of the BetterSet passed as an argument
 
-**this.union(PowerSet) =>** Returns a powerset that is a combonation of this PowerSet and the PowerSet passed in as an argument.
+**this.union(BetterSet) =>** Returns a Betterset that is a combonation of this BetterSet and the BetterSet passed in as an argument.
 
-**this.intersection(PowerSet) =>** returns PowerSet of elements in common between two PowerSets
+**this.intersection(BetterSet) =>** returns BetterSet of elements in common between two BetterSets
 
-**this.symmetricDifference(PowerSet) =>** returns PowerSet of elements not shared by both PowerSets
+**this.symmetricDifference(BetterSet) =>** returns BetterSet of elements not shared by both BetterSets
 
-**this.difference(PowerSet) =>** returns PowerSet of elements not shared by this array with the passed in array
+**this.difference(BetterSet) =>** returns BetterSet of elements not shared by this array with the passed in array

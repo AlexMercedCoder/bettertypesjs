@@ -85,7 +85,7 @@ class BetterSet {
     }
 
     union(setB) {
-        return new PowerSet([...this.set, ...setB.set]);
+        return new BetterSet([...this.set, ...setB.set]);
     }
 
     intersection(setB) {
@@ -95,7 +95,7 @@ class BetterSet {
                 _intersection.add(elem);
             }
         }
-        return new PowerSet([..._intersection]);
+        return new BetterSet([..._intersection]);
     }
 
     symmetricDifference(setB) {
@@ -107,7 +107,7 @@ class BetterSet {
                 _difference.add(elem);
             }
         }
-        return new PowerSet([..._difference]);
+        return new BetterSet([..._difference]);
     }
 
     difference(setB) {
@@ -115,7 +115,7 @@ class BetterSet {
         for (let elem of setB.set) {
             _difference.delete(elem);
         }
-        return new PowerSet([..._difference]);
+        return new BetterSet([..._difference]);
     }
 }
 

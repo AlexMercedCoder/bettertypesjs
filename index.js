@@ -167,7 +167,7 @@ class BetterArray {
     }
 
     random() {
-        const randomIndex = Math.floor(Math.random() * this.length);
+        const randomIndex = Random.index(this.arr);
 
         const RandomValue = this.arr[randomIndex];
         return RandomValue;
@@ -175,7 +175,7 @@ class BetterArray {
 
     remove(callback) {
         const newArray = [];
-        for (i = 0; i < this.arr.length; i++) {
+        for (let i = 0; i < this.arr.length; i++) {
             if (callback(this.arr[i], i)) {
             } else {
                 newArray.push(this.arr[i]);
@@ -195,7 +195,7 @@ class BetterArray {
     leaveOne() {
         const newArray = [];
         while (this.arr.length > 1) {
-            newArray.push(this.arr.randElim()[0]);
+            newArray.push(this.randElim()[0]);
         }
         return new BetterArray(newArray);
     }
@@ -203,7 +203,7 @@ class BetterArray {
     leaveSome(num) {
         const newArray = [];
         while (this.arr.length > num) {
-            newArray.push(this.arr.randElim()[0]);
+            newArray.push(this.randElim()[0]);
         }
         return new BetterArray(newArray);
     }
@@ -247,7 +247,7 @@ class BetterArray {
 
     mapToObject(callback) {
         const newObj = {};
-        for (i = 0; i < this.arr.length; i++) {
+        for (let i = 0; i < this.arr.length; i++) {
             const propToBe = callback(this.arr[i], i);
             if (propToBe instanceof Array && propToBe.length >= 2) {
                 newObj[propToBe[0]] = propToBe[1];
@@ -258,7 +258,7 @@ class BetterArray {
 
     mapToMap(callback) {
         const newMap = new Map();
-        for (i = 0; i < this.arr.length; i++) {
+        for (let i = 0; i < this.arr.length; i++) {
             const propToBe = callback(this.arr[i], i);
             if (propToBe instanceof Array && propToBe.length >= 2) {
                 newMap.set(propToBe[0], propToBe[1]);
@@ -269,7 +269,7 @@ class BetterArray {
 
     mapToSet(callback) {
         const newSet = [];
-        for (i = 0; i < this.arr.length; i++) {
+        for (let i = 0; i < this.arr.length; i++) {
             newSet.push(callback(this.arr[i], i));
         }
         return new Set(newSet);
@@ -277,7 +277,7 @@ class BetterArray {
 
     mapToUnique(callback) {
         const newSet = [];
-        for (i = 0; i < this.arr.length; i++) {
+        for (let i = 0; i < this.arr.length; i++) {
             newSet.push(callback(this.arr[i], i));
         }
         return new BetterArray([...new Set(newSet)]);
@@ -291,9 +291,9 @@ class BetterArray {
     }
 
     shuff() {
-        const original = [...this.arr];
+        const original = new BetterArray([...this.arr]);
         const shuffled = [];
-        for (i = 0; i < this.arr.length; i++) {
+        for (let i = 0; i < this.arr.length; i++) {
             shuffled.push(original.randElim());
         }
 

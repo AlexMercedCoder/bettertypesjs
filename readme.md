@@ -8,6 +8,8 @@ This library contains useful classes, methods and functions.
 
 ### installation
 
+CDN LINK: http://www.alexmercedcoder.com/better.js
+
 #### NPM
 
 npm i @alexmerced/bettertypes
